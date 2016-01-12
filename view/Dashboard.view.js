@@ -2,19 +2,14 @@ jQuery.sap.require("sap.m.StandardTile");
 // Load the rounded tile control
 jQuery.sap.require("com.scs.view.RoundedTile");
 
-sap.ui
-		.jsview(
-				"com.scs.view.Dashboard",
-				{
+sap.ui.jsview("com.scs.view.Dashboard", {id:"dashboardView",
 
-					/**
-					 * Specifies the Controller belonging to this View. In the
-					 * case that it is not implemented, or that "null" is
-					 * returned, this View does not have a Controller.
-					 * 
-					 * @memberOf com.scs.view.Dashboard
-					 */
-					getControllerName : function() {
+	/** Specifies the Controller belonging to this View. 
+	 * In the case that it is not implemented, or that "null" is returned, this View does not have a Controller.
+	 * @memberOf com.scs.view.Dashboard
+	 */
+
+getControllerName : function() {
 						return "com.scs.view.Dashboard";
 					},
 
@@ -27,18 +22,28 @@ sap.ui
 					 * @memberOf com.scs.view.Dashboard
 					 */
 					createContent : function(oController) {
+						
+						
+							this._oView = this;
+							this._oComponent = sap.ui.component(sap.ui.core.Component.getOwnerIdFor(this._oView));
+						this._oResourceBundle = this._oComponent.getModel("i18n").getResourceBundle();
+						this._oRouter = this._oComponent.getRouter();
+						this._oCatalog = this.byId("catalogTable");
+										
+						
+						
 						// var tilesM = new sap.ui.model.json.JSONModel();
 						// tilesM.loadData('../model/tiles.json');
 						// var tiles = tilesM.getData();
 						var tiles = [ {
-							title : "Import Customers",
+							title : this._oResourceBundle.getText("ImportCustomers"),
 							icon : "excel-attachment",
 							 iconColor : "#0000b3",
 							// bgColor : "#0047b3",//"rgb(57, 123, 110)",
 							 borderColor : "rgb(57, 123, 110)",
 							press : "upload"
 						}, {
-							title : "Customer Segmentation",
+							title : this._oResourceBundle.getText("CustomerSegmentation"),
 							icon : "search",
 							 iconColor : "#0000b3",
 						//	 bgColor : "#0047b3",//"rgb(57, 123, 110)",
@@ -46,7 +51,7 @@ sap.ui
 							press : "contacts"
 						}, 
 //						{
-//							title : "Compose",
+//							title : this._oResourceBundle.getText("Compose"),
 //							icon : "add",
 //							 iconColor : "#ffffff",
 //							 bgColor : "#0047b3",//"rgb(57, 123, 110)",
@@ -55,7 +60,7 @@ sap.ui
 //							press : "groups"
 //						},
 						{
-							title : "SMS Templates",
+							title : this._oResourceBundle.getText("SMSTemplates"),
 							icon : "iphone",
 							press : "templates",
 							 iconColor : "#0000b3",// "#ffffff",
@@ -66,7 +71,7 @@ sap.ui
 						},
 
 						{
-							title : "SMS Box",
+							title : this._oResourceBundle.getText("SMSBox"),
 							icon : "inbox",
 							press : "inbox",
 							 iconColor : "#00b36b",// "#ffffff",
@@ -76,21 +81,21 @@ sap.ui
 
 						},
 //						{
-//							title : "Add User",
+//							title : this._oResourceBundle.getText("AddUser"),
 //							icon : "add-contact",
 //							press : "addUser"
 //
 //						},
 
 						{
-							title : "Import SMS",
+							title : this._oResourceBundle.getText("ImportSMS"),
 							icon : "measurement-document",
 							// iconColor : "#ffffff",
 							// bgColor : "rgb(57, 123, 110)",
 							// borderColor : "rgb(57, 123, 110)",
 							press : "uploadSchedule"
 						}, {
-							title : "Import Appointment SMS",
+							title : this._oResourceBundle.getText("ImportAppointmentSMS"),
 							icon : "appointment-2",
 							// iconColor : "#ffffff",
 							// bgColor : "rgb(57, 123, 110)",
@@ -151,7 +156,7 @@ sap.ui
 
 						// Creates and returns the Page to be shown by the view
 
-						return new sap.m.Page(
+						return new sap.m.Page("dashboardView",
 								{
 									// title: "Dashboard",
 									// showHeader:false,
@@ -164,7 +169,7 @@ sap.ui
 											{
 												contentMiddle : [new sap.m.Text(
 														{
-															text : "DashBoard"
+															text :  this._oResourceBundle.getText("DashBoard")
 														}) ],
 												contentRight : [
 														new sap.m.Text({
@@ -176,7 +181,7 @@ sap.ui
 											{
 												contentMiddle : [ new sap.m.Text(
 														{
-															text : "Simple Communication System"
+															text :  this._oResourceBundle.getText("SCS")
 														}) ],
 												contentRight : [
 														new sap.m.Button({
@@ -195,9 +200,9 @@ sap.ui
 														]
 											}),
 									content : [ this.oTilesContainer ],
-									footer:new sap.m.Bar({contentMiddle:[new sap.m.Text({text:"{STR>/SCSFOOTER}"})]})
+									footer:new sap.m.Bar({contentMiddle:[new sap.m.Text({text:"{i18n>SCSFOOTER}"})]})
 								});
 
 					}
 
-				});
+});

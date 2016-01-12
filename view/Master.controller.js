@@ -3,7 +3,7 @@ jQuery.sap.require("sap.ca.ui.model.format.AmountFormat");
 jQuery.sap.require("sap.m.TablePersoController");
 
 sap.ui.core.mvc.Controller.extend("com.scs.view.Master", {
-	_oCatalog: null,
+	_oController: this,
 	_oResourceBundle: null,
 
 	onInit: function() {
@@ -12,9 +12,7 @@ sap.ui.core.mvc.Controller.extend("com.scs.view.Master", {
 		this._oComponent = sap.ui.component(sap.ui.core.Component.getOwnerIdFor(this._oView));
 		this._oResourceBundle = this._oComponent.getModel("i18n").getResourceBundle();
 		this._oRouter = this._oComponent.getRouter();
-		this._oCatalog = this.byId("catalogTable");
-
-		this._initViewPropertiesModel();
+		that= this;
 	},
 
 	// The model created here is used to set values or view element properties that cannot be bound

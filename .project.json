@@ -15,6 +15,11 @@
       "templateId": "ui5template.fioriFullScreen",
       "templateVersion": "1.4.0",
       "dateTimeStamp": "Mon, 11 Jan 2016 15:25:55 GMT"
+    },
+    {
+      "templateId": "ui5template.basicSAPUI5ApplicationComponent",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Tue, 12 Jan 2016 06:32:32 GMT"
     }
   ],
   "translation": {

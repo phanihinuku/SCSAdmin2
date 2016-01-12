@@ -37,7 +37,7 @@ sap.ui.core.UIComponent.extend("com.scs.Component", {
 					view: "Login"
 				},
 				{
-					pattern: "Dashboard",
+					pattern: "{entity}",
 					name: "idDashboard",
 					view: "Dashboard",
 					viewType: "JS"
@@ -46,6 +46,12 @@ sap.ui.core.UIComponent.extend("com.scs.Component", {
 					name: "details",
 					view: "Details",
 					pattern: "{entity}"
+				},
+				{
+					name: "idAdduser",
+					view: "Adduser"
+					// ,
+					// pattern: "{entity}"
 				}
 			]
 		}
